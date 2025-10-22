@@ -13,6 +13,7 @@ import {darken} from './colors';
 import {Adapter} from './adapter';
 import {removeDefaultFonts, optiCompress} from './compressor';
 import encodeBigString from './encode-big-string';
+import JSZip from 'jszip';
 
 const PROGRESS_LOADED_SCRIPTS = 0.1;
 
@@ -328,50 +329,33 @@ class Packager extends EventTarget {
     validatePackageName(packageName);
 
     const nwjsBuffer = await this.fetchLargeAsset(this.options.target, 'arraybuffer');
-    let nwjsZip;
+    const pako = require('pako');
+    const untar = require('js-untar');
+
+    let loadNwjsLinuxTarGz = async (buf, _zip) => {
+        // Step 1: Decompress the gzip (.tar.gz → .tar)
+        const gunzipped = pako.ungzip(new Uint8Array(buf));
+
+        // Step 2: Parse the tar archive
+        const entries = await untar(gunzipped.buffer);
+
+        // Step 3: Repackage into a JSZip object so your existing logic still works
+        const zip = new _zip();
+        for (const entry of entries) {
+            if (entry.type === 'file') {
+            zip.file(entry.name, entry.buffer);
+            }
+        }
+        return zip;
+    }
+
 
     if (this.options.target.startsWith('nwjs-linux')) {
-      // Use require() (non-module)
-      const pako = require('pako');
-      const tar = require('tar-stream');
-      const JSZip = await getJSZip(); // keep your loader
-      
-      // nwjsBuffer from your fetchLargeAsset (ArrayBuffer)
-      const gunzipped = pako.ungzip(new Uint8Array(nwjsBuffer));
-      // make sure it's a Buffer for tar-stream
-      const gunzippedBuf = Buffer.from(gunzipped);
-      
-      const extract = tar.extract();
-      const zip = new JSZip();
-      
-      extract.on('entry', (header, stream, next) => {
-        const chunks = [];
-        stream.on('data', (chunk) => {
-          // chunk here is already a Buffer in Node streams; push as-is
-          chunks.push(chunk);
-        });
-        stream.on('end', () => {
-          if (!header.name.endsWith('/')) {
-            const content = Buffer.concat(chunks); // works in Node
-            zip.file(header.name, content);
-          }
-          next();
-        });
-        stream.resume();
-      });
-      
-      await new Promise((resolve, reject) => {
-        extract.on('finish', resolve);
-        extract.on('error', reject);
-        extract.end(gunzippedBuf); // pass Buffer, not Uint8Array
-      });
-      
-      // nwjsZip is the JSZip instance
-      const nwjsZip = zip;
+      var nwjsZip = loadNwjsLinuxTarGz(nwjsBuffer, JSZip)
 
   } else {
       // Windows & macOS are still .zip
-      nwjsZip = await (await getJSZip()).loadAsync(nwjsBuffer);
+      var nwjsZip = await (await getJSZip()).loadAsync(nwjsBuffer);
   }
 
 
