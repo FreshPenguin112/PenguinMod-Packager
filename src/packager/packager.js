@@ -335,7 +335,7 @@ class Packager extends EventTarget {
     const { ungzip } = await import('pako');      // decompress gzip
     const tar = await import('tar-stream');       // parse tar
 
-    const gunzipped = ungzip(new Uint8Array(nwjsBuffer));
+    const gunzipped = ungzip(nwjsBuffer);
 
     const extract = tar.extract();
     const zip = new (await getJSZip());
