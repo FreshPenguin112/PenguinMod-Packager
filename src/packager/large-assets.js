@@ -22,36 +22,36 @@ const relativeScaffolding = (name) => `scaffolding/${name}`;
 
 export default {
   'nwjs-win64': {
-    src: 'https://registry.npmmirror.com/nwjs/v0.102.1/nwjs-v0.102.1-win-x64.zip',
-    estimatedSize: 135854818
+    src: 'https://registry.npmmirror.com/-/binary/nwjs/v0.96.0/nwjs-v0.96.0-win-x64.zip',
+    estimatedSize: 130000000
   },
   'nwjs-win32': {
-    src: 'https://registry.npmmirror.com/nwjs/v0.102.1/nwjs-v0.102.1-win-ia32.zip',
-    estimatedSize: 112613344
+    src: 'https://registry.npmmirror.com/-/binary/nwjs/v0.96.0/nwjs-v0.96.0-win-ia32.zip',
+    estimatedSize: 110000000
   },
   'nwjs-mac': {
-    src: 'https://registry.npmmirror.com/nwjs/v0.102.1/nwjs-v0.102.1-osx-x64.zip',
-    estimatedSize: 119091132
+    src: 'https://registry.npmmirror.com/-/binary/nwjs/v0.96.0/nwjs-v0.96.0-osx-x64.zip',
+    estimatedSize: 120000000
   },
   'nwjs-linux-x64': {
-    src: 'https://registry.npmmirror.com/nwjs/v0.102.1/nwjs-v0.102.1-linux-x64.tar.gz',
-    estimatedSize: 135854818
+    src: 'https://registry.npmmirror.com/-/binary/nwjs/v0.96.0/nwjs-v0.96.0-linux-x64.tar.gz',
+    estimatedSize: 130000000
   },
   'electron-win32': {
-    src: 'https://registry.npmmirror.com/electron/v25.0.0/electron-v25.0.0-win32-ia32.zip',
-    estimatedSize: 90856612
+    src: 'https://registry.npmmirror.com/-/binary/electron/v38.4.0/electron-v38.4.0-win32-ia32.zip',
+    estimatedSize: 95000000
   },
   'electron-win64': {
-    src: 'https://registry.npmmirror.com/electron/v25.0.0/electron-v25.0.0-win32-x64.zip',
-    estimatedSize: 96605498
+    src: 'https://registry.npmmirror.com/-/binary/electron/v38.4.0/electron-v38.4.0-win32-x64.zip',
+    estimatedSize: 100000000
   },
   'electron-mac': {
-    src: 'https://registry.npmmirror.com/electron/v25.0.0/electron-v25.0.0-darwin-x64.zip',
-    estimatedSize: 160882083
+    src: 'https://registry.npmmirror.com/-/binary/electron/v38.4.0/electron-v38.4.0-darwin-x64.zip',
+    estimatedSize: 165000000
   },
   'electron-linux64': {
-    src: 'https://registry.npmmirror.com/electron/v25.0.0/electron-v25.0.0-linux-x64.zip',
-    estimatedSize: 93426892
+    src: 'https://registry.npmmirror.com/-/binary/electron/v38.4.0/electron-v38.4.0-linux-x64.zip',
+    estimatedSize: 98000000
   },
   scaffolding: {
     src: 'scaffolding/scaffolding-full.js',
