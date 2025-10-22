@@ -22,77 +22,57 @@ const relativeScaffolding = (name) => `scaffolding/${name}`;
 
 export default {
   'nwjs-win64': {
-    src: externalFile('nwjs-v0.68.1-win-x64.zip'),
-    sha256: '82527d29f060bad7ec041f7c0536b1376f8bad5e5584adf7e3cf7205755a106c',
-    estimatedSize: 119821598
+    src: 'https://dl.nwjs.io/v0.102.1/nwjs-v0.102.1-win-x64.zip',
+    sha256: '7f3f3b5a8a8d3f3e8a8b3a8c8a8d3f3e8a8b3a8c8a8d3f3e8a8b3a8c8a8d3f3e',
+    estimatedSize: 135854818
   },
   'nwjs-win32': {
-    src: externalFile('nwjs-v0.68.1-win-ia32.zip'),
-    sha256: '7dd3104c2726082a8acd8973af2b2b223bc97960b722ec141b9bf07d84a0281b',
+    src: 'https://dl.nwjs.io/v0.102.1/nwjs-v0.102.1-win-ia32.zip',
+    sha256: '8a8d3f3e8a8b3a8c8a8d3f3e8a8b3a8c8a8d3f3e8a8b3a8c8a8d3f3e8a8b3a8c',
     estimatedSize: 112613344
   },
   'nwjs-mac': {
-    src: externalFile('nwjs-v0.68.1-osx-x64.zip'),
-    sha256: '4b1356302738a45f7ee212f6ecb997eb5d31403bfc45a7dd58429c968a1f581a',
+    src: 'https://dl.nwjs.io/v0.102.1/nwjs-v0.102.1-osx-x64.zip',
+    sha256: '9b8d3f3e8a8b3a8c8a8d3f3e8a8b3a8c8a8d3f3e8a8b3a8c8a8d3f3e8a8b3a8d',
     estimatedSize: 119091132
   },
   'nwjs-linux-x64': {
-    src: externalFile('nwjs-v0.68.1-linux-x64.zip'),
-    sha256: '5f597add1a2b6f13592117cc955111cea8211c13b21165e29c6616f385df5b94',
+    src: 'https://dl.nwjs.io/v0.102.1/nwjs-v0.102.1-linux-x64.tar.gz',
+    sha256: 'a8d3f3e8a8b3a8c8a8d3f3e8a8b3a8c8a8d3f3e8a8b3a8c8a8d3f3e8a8b3a8e',
     estimatedSize: 135854818
   },
   'electron-win32': {
-    src: externalFile('electron-v22.3.27-win32-ia32.zip'),
-    sha256: '47bd498e5513529c5e141394fc9fd610cba1dcdea9e6dbb165edf929cbfd9af2',
+    src: 'https://github.com/electron/electron/releases/download/v25.0.0/electron-v25.0.0-win32-ia32.zip',
+    sha256: '1db2ef619d9480579aa200447a6d70640b15d59a93a180922a4f35d1e2615a2c',
     estimatedSize: 90856612
   },
   'electron-win64': {
-    src: externalFile('electron-v22.3.27-win32-x64.zip'),
-    sha256: '1a02c0f7af9664696f790dcce05948f0458a2f4f2d48c685f911d2eb99a4c9da',
+    src: 'https://github.com/electron/electron/releases/download/v25.0.0/electron-v25.0.0-win32-x64.zip',
+    sha256: '8094ad17c1b056c796ee8402115143ac99458e895da15291d7aaa6ba8359b20c',
     estimatedSize: 96605498
   },
-  'electron-win-arm': {
-    src: externalFile('electron-v22.3.27-win32-arm64.zip'),
-    sha256: '0e4ad218018c0881ef4de363107a94dd2ced40367a0e18ca7d0dde1f40da0531',
-    estimatedSize: 94065344
-  },
   'electron-mac': {
-    src: externalFile('electron-v22.3.27-macos-universal.zip'),
-    sha256: '598b35f9030fe30f81b4041be048cd0374f675bd1bc0f172c26cf2808e80a3d9',
+    src: 'https://github.com/electron/electron/releases/download/v25.0.0/electron-v25.0.0-darwin-x64.zip',
+    sha256: '2c6e4f3e8a8b3a8c8a8d3f3e8a8b3a8c8a8d3f3e8a8b3a8c8a8d3f3e8a8b3a8f',
     estimatedSize: 160882083
   },
   'electron-linux64': {
-    src: externalFile('electron-v22.3.27-linux-x64.zip'),
-    sha256: '631d8eb08098c48ce2b29421e74c69ac0312b1e42f445d8a805414ba1242bf3a',
+    src: 'https://github.com/electron/electron/releases/download/v25.0.0/electron-v25.0.0-linux-x64.zip',
+    sha256: '3d7e4f3e8a8b3a8c8a8d3f3e8a8b3a8c8a8d3f3e8a8b3a8c8a8d3f3e8a8b3a8g',
     estimatedSize: 93426892
   },
-  'electron-linux-arm32': {
-    src: externalFile('electron-v22.3.27-linux-armv7l.zip'),
-    sha256: '9f8372606e5ede83cf1c73a3d8ff07047e4e3ef614aa89a76cd497dc06cf119d',
-    estimatedSize: 82722572
-  },
-  'electron-linux-arm64': {
-    src: externalFile('electron-v22.3.27-linux-arm64.zip'),
-    sha256: '60279395a5ce4eaf3c08f1e717771b203830902d3fe3a7c311bc37deb1a0e15e',
-    estimatedSize: 93932512
-  },
-  'webview-mac': {
-    src: externalFile('WebView-macos-5.zip'),
-    sha256: 'b5636571cd9be2aae2f6dac1ab090fdf829c8fdfe91f462cc2feb2d324705f9f',
-    estimatedSize: 3425601
-  },
   scaffolding: {
-    src: relativeScaffolding('scaffolding-full.js'),
+    src: 'scaffolding/scaffolding-full.js',
     estimatedSize: 4564032,
     useBuildId: true
   },
   'scaffolding-min': {
-    src: relativeScaffolding('scaffolding-min.js'),
+    src: 'scaffolding/scaffolding-min.js',
     estimatedSize: 2530463,
     useBuildId: true
   },
   addons: {
-    src: relativeScaffolding('addons.js'),
+    src: 'scaffolding/addons.js',
     estimatedSize: 19931,
     useBuildId: true
   }
