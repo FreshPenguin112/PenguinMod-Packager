@@ -38,19 +38,19 @@ export default {
     estimatedSize: 130000000
   },
   'electron-win32': {
-    src: 'https://registry.npmmirror.com/-/binary/electron/v38.4.0/electron-v38.4.0-win32-ia32.zip',
+    src: 'https://registry.npmmirror.com/-/binary/electron/v37.0.0/electron-v37.0.0-win32-ia32.zip',
     estimatedSize: 95000000
   },
   'electron-win64': {
-    src: 'https://registry.npmmirror.com/-/binary/electron/v38.4.0/electron-v38.4.0-win32-x64.zip',
+    src: 'https://registry.npmmirror.com/-/binary/electron/v37.0.0/electron-v37.0.0-win32-x64.zip',
     estimatedSize: 100000000
   },
   'electron-mac': {
-    src: 'https://registry.npmmirror.com/-/binary/electron/v38.4.0/electron-v38.4.0-darwin-x64.zip',
+    src: 'https://registry.npmmirror.com/-/binary/electron/v37.0.0/electron-v37.0.0-darwin-x64.zip',
     estimatedSize: 165000000
   },
   'electron-linux64': {
-    src: 'https://registry.npmmirror.com/-/binary/electron/v38.4.0/electron-v38.4.0-linux-x64.zip',
+    src: 'https://registry.npmmirror.com/-/binary/electron/v37.0.0/electron-v37.0.0-linux-x64.zip',
     estimatedSize: 98000000
   },
   scaffolding: {
