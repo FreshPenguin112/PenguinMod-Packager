@@ -333,19 +333,25 @@ class Packager extends EventTarget {
     const untar = require('js-untar');
 
     let loadNwjsLinuxTarGz = async (buf, _zip) => {
-        // Step 1: Decompress the gzip (.tar.gz → .tar)
-        const gunzipped = pako.ungzip(new Uint8Array(buf));
-
-        // Step 2: Parse the tar archive
+        // Step 1: Decompress gzip
+        const gunzipped = pako.ungzip(new Uint8Array(nwjsBuffer));
+      
+        // Step 2: Parse TAR
         const entries = await untar(gunzipped.buffer);
+        console.log(entries.map(e => e.name));
 
-        // Step 3: Repackage into a JSZip object so your existing logic still works
-        const zip = new _zip();
-        for (const entry of entries) {
-            if (entry.type === 'file') {
-            zip.file(entry.name, entry.buffer);
-            }
+        if (!entries || entries.length === 0) {
+          throw new Error('Failed to extract NW.js archive: tar file empty or invalid');
         }
+      
+        // Step 3: Build JSZip archive
+        const zip = new JSZip();
+        for (const entry of entries) {
+          if (entry.type === 'file') {
+            zip.file(entry.name, entry.buffer);
+          }
+        }
+      
         return zip;
     }
 
