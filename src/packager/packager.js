@@ -574,8 +574,8 @@ const createWindow = (windowOptions) => {
       nodeIntegration: true,             // Enable Node.js integration
       contextIsolation: false,           // Disable context isolation
       nodeIntegrationInWorker: true,     // Enable Node.js integration in web workers
-      nodeIntegrationInSubFrames: true,  // Enable Node.js integration in sub-frames (iframes)
-    }
+      nodeIntegrationInSubFrames: true  // Enable Node.js integration in sub-frames (iframes)
+    },
     show: true,
     width: 480,
     height: 360,
