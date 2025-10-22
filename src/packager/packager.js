@@ -393,7 +393,17 @@ class Packager extends EventTarget {
     //       +-- ...
 
     // the first folder, something like "nwjs-v0.49.0-win-64"
-    const nwjsPrefix = Object.keys(nwjsZip.files)[0].split('/')[0];
+    // Detect prefix safely
+    const fileKeys = Object.keys(nwjsZip.files);
+    if (fileKeys.length === 0) {
+      throw new Error("No files in nwjsZip — extraction likely failed.");
+    }
+
+    const firstFileWithSlash = fileKeys.find(name => name.includes('/')) || fileKeys[0];
+    const nwjsPrefix = firstFileWithSlash ? firstFileWithSlash.split('/')[0] : '';
+
+    console.log('Detected prefix:', nwjsPrefix);
+    //const nwjsPrefix = Object.keys(nwjsZip.files)[0].split('/')[0];
 
     const zip = new (await getJSZip());
 
