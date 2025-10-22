@@ -358,7 +358,7 @@ class Packager extends EventTarget {
 
     if (this.options.target.startsWith('nwjs-linux')) {
       var nwjsZip = await loadNwjsLinuxTarGz(nwjsBuffer, JSZip);
-
+      console.log(typeof nsjsZip);
   } else {
       // Windows & macOS are still .zip
       var nwjsZip = await (await getJSZip()).loadAsync(nwjsBuffer);
