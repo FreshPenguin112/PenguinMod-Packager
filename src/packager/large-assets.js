@@ -22,43 +22,35 @@ const relativeScaffolding = (name) => `scaffolding/${name}`;
 
 export default {
   'nwjs-win64': {
-    src: 'https://dl.nwjs.io/v0.102.1/nwjs-v0.102.1-win-x64.zip',
-    sha256: '7f3f3b5a8a8d3f3e8a8b3a8c8a8d3f3e8a8b3a8c8a8d3f3e8a8b3a8c8a8d3f3e',
+    src: 'https://registry.npmmirror.com/nwjs/v0.102.1/nwjs-v0.102.1-win-x64.zip',
     estimatedSize: 135854818
   },
   'nwjs-win32': {
-    src: 'https://dl.nwjs.io/v0.102.1/nwjs-v0.102.1-win-ia32.zip',
-    sha256: '8a8d3f3e8a8b3a8c8a8d3f3e8a8b3a8c8a8d3f3e8a8b3a8c8a8d3f3e8a8b3a8c',
+    src: 'https://registry.npmmirror.com/nwjs/v0.102.1/nwjs-v0.102.1-win-ia32.zip',
     estimatedSize: 112613344
   },
   'nwjs-mac': {
-    src: 'https://dl.nwjs.io/v0.102.1/nwjs-v0.102.1-osx-x64.zip',
-    sha256: '9b8d3f3e8a8b3a8c8a8d3f3e8a8b3a8c8a8d3f3e8a8b3a8c8a8d3f3e8a8b3a8d',
+    src: 'https://registry.npmmirror.com/nwjs/v0.102.1/nwjs-v0.102.1-osx-x64.zip',
     estimatedSize: 119091132
   },
   'nwjs-linux-x64': {
-    src: 'https://dl.nwjs.io/v0.102.1/nwjs-v0.102.1-linux-x64.tar.gz',
-    sha256: 'a8d3f3e8a8b3a8c8a8d3f3e8a8b3a8c8a8d3f3e8a8b3a8c8a8d3f3e8a8b3a8e',
+    src: 'https://registry.npmmirror.com/nwjs/v0.102.1/nwjs-v0.102.1-linux-x64.tar.gz',
     estimatedSize: 135854818
   },
   'electron-win32': {
-    src: 'https://github.com/electron/electron/releases/download/v25.0.0/electron-v25.0.0-win32-ia32.zip',
-    sha256: '1db2ef619d9480579aa200447a6d70640b15d59a93a180922a4f35d1e2615a2c',
+    src: 'https://registry.npmmirror.com/electron/v25.0.0/electron-v25.0.0-win32-ia32.zip',
     estimatedSize: 90856612
   },
   'electron-win64': {
-    src: 'https://github.com/electron/electron/releases/download/v25.0.0/electron-v25.0.0-win32-x64.zip',
-    sha256: '8094ad17c1b056c796ee8402115143ac99458e895da15291d7aaa6ba8359b20c',
+    src: 'https://registry.npmmirror.com/electron/v25.0.0/electron-v25.0.0-win32-x64.zip',
     estimatedSize: 96605498
   },
   'electron-mac': {
-    src: 'https://github.com/electron/electron/releases/download/v25.0.0/electron-v25.0.0-darwin-x64.zip',
-    sha256: '2c6e4f3e8a8b3a8c8a8d3f3e8a8b3a8c8a8d3f3e8a8b3a8c8a8d3f3e8a8b3a8f',
+    src: 'https://registry.npmmirror.com/electron/v25.0.0/electron-v25.0.0-darwin-x64.zip',
     estimatedSize: 160882083
   },
   'electron-linux64': {
-    src: 'https://github.com/electron/electron/releases/download/v25.0.0/electron-v25.0.0-linux-x64.zip',
-    sha256: '3d7e4f3e8a8b3a8c8a8d3f3e8a8b3a8c8a8d3f3e8a8b3a8c8a8d3f3e8a8b3a8g',
+    src: 'https://registry.npmmirror.com/electron/v25.0.0/electron-v25.0.0-linux-x64.zip',
     estimatedSize: 93426892
   },
   scaffolding: {
