@@ -331,39 +331,49 @@ class Packager extends EventTarget {
     let nwjsZip;
 
     if (this.options.target.startsWith('nwjs-linux')) {
-    // Linux releases are .tar.gz, not .zip
-    const { ungzip } = await import('pako');      // decompress gzip
-    const tar = await import('tar-stream');       // parse tar
-
-    const gunzipped = ungzip(nwjsBuffer);
-
-    const extract = tar.extract();
-    const zip = new (await getJSZip());
-
-    extract.on('entry', (header, stream, next) => {
+      // Use require() (non-module)
+      const pako = require('pako');
+      const tar = require('tar-stream');
+      const JSZip = await getJSZip(); // keep your loader
+      
+      // nwjsBuffer from your fetchLargeAsset (ArrayBuffer)
+      const gunzipped = pako.ungzip(new Uint8Array(nwjsBuffer));
+      // make sure it's a Buffer for tar-stream
+      const gunzippedBuf = Buffer.from(gunzipped);
+      
+      const extract = tar.extract();
+      const zip = new JSZip();
+      
+      extract.on('entry', (header, stream, next) => {
         const chunks = [];
-        stream.on('data', (chunk) => chunks.push(chunk));
+        stream.on('data', (chunk) => {
+          // chunk here is already a Buffer in Node streams; push as-is
+          chunks.push(chunk);
+        });
         stream.on('end', () => {
-        if (!header.name.endsWith('/')) {
-            zip.file(header.name, Buffer.concat(chunks));
-        }
-        next();
+          if (!header.name.endsWith('/')) {
+            const content = Buffer.concat(chunks); // works in Node
+            zip.file(header.name, content);
+          }
+          next();
         });
         stream.resume();
-    });
-
-    // run extraction
-    await new Promise((resolve, reject) => {
+      });
+      
+      await new Promise((resolve, reject) => {
         extract.on('finish', resolve);
         extract.on('error', reject);
-        extract.end(gunzipped);
-    });
+        extract.end(gunzippedBuf); // pass Buffer, not Uint8Array
+      });
+      
+      // nwjsZip is the JSZip instance
+      const nwjsZip = zip;
 
-    nwjsZip = zip;
-    } else {
-    // Windows & macOS are still normal ZIPs
-    nwjsZip = await (await getJSZip()).loadAsync(nwjsBuffer);
-    }
+  } else {
+      // Windows & macOS are still .zip
+      nwjsZip = await (await getJSZip()).loadAsync(nwjsBuffer);
+  }
+
 
 
     const isWindows = this.options.target.startsWith('nwjs-win');
