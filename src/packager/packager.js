@@ -328,7 +328,43 @@ class Packager extends EventTarget {
     validatePackageName(packageName);
 
     const nwjsBuffer = await this.fetchLargeAsset(this.options.target, 'arraybuffer');
-    const nwjsZip = await (await getJSZip()).loadAsync(nwjsBuffer);
+    let nwjsZip;
+
+    if (this.options.target.startsWith('nwjs-linux')) {
+    // Linux releases are .tar.gz, not .zip
+    const { ungzip } = await import('pako');      // decompress gzip
+    const tar = await import('tar-stream');       // parse tar
+
+    const gunzipped = ungzip(new Uint8Array(nwjsBuffer));
+
+    const extract = tar.extract();
+    const zip = new (await getJSZip());
+
+    extract.on('entry', (header, stream, next) => {
+        const chunks = [];
+        stream.on('data', (chunk) => chunks.push(chunk));
+        stream.on('end', () => {
+        if (!header.name.endsWith('/')) {
+            zip.file(header.name, Buffer.concat(chunks));
+        }
+        next();
+        });
+        stream.resume();
+    });
+
+    // run extraction
+    await new Promise((resolve, reject) => {
+        extract.on('finish', resolve);
+        extract.on('error', reject);
+        extract.end(gunzipped);
+    });
+
+    nwjsZip = zip;
+    } else {
+    // Windows & macOS are still normal ZIPs
+    nwjsZip = await (await getJSZip()).loadAsync(nwjsBuffer);
+    }
+
 
     const isWindows = this.options.target.startsWith('nwjs-win');
     const isMac = this.options.target === 'nwjs-mac';
@@ -575,7 +611,7 @@ const createWindow = (windowOptions) => {
       contextIsolation: false,           // Disable context isolation
       nodeIntegrationInWorker: true,     // Enable Node.js integration in web workers
       nodeIntegrationInSubFrames: true  // Enable Node.js integration in sub-frames (iframes)
-    }
+    },
     show: true,
     width: 480,
     height: 360,
