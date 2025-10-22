@@ -347,9 +347,8 @@ class Packager extends EventTarget {
         // Step 3: Build JSZip archive
         const zip = new JSZip();
         for (const entry of entries) {
-          if (entry.type === 'file') {
+            //console.log(entry)
             zip.file(entry.name, entry.buffer);
-          }
         }
       
         return zip;
@@ -358,7 +357,7 @@ class Packager extends EventTarget {
 
     if (this.options.target.startsWith('nwjs-linux')) {
       var nwjsZip = await loadNwjsLinuxTarGz(nwjsBuffer, JSZip);
-      console.log(typeof nsjsZip);
+      console.log((await (nwjsZip)));
   } else {
       // Windows & macOS are still .zip
       var nwjsZip = await (await getJSZip()).loadAsync(nwjsBuffer);
@@ -400,7 +399,7 @@ class Packager extends EventTarget {
     }
 
     const firstFileWithSlash = fileKeys.find(name => name.includes('/')) || fileKeys[0];
-    const nwjsPrefix = firstFileWithSlash ? firstFileWithSlash.split('/')[0] : '';
+    let nwjsPrefix = firstFileWithSlash + "/" ? firstFileWithSlash.split('/')[0] : '';
 
     console.log('Detected prefix:', nwjsPrefix);
     //const nwjsPrefix = Object.keys(nwjsZip.files)[0].split('/')[0];
